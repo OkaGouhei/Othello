@@ -169,7 +169,7 @@ public class Othello {
         continue;
       }
       if (judge > 0 ){
-        gameEnd = 0; // 連続してjudgeが0の場合に終了できるようにするためのからくり
+        gameEnd = 0; // 連続してjudgeが0以上の場合に終了できるようにするためのからくり
       }
 
       System.out.println("Player "+mark[player]+" の番です");
