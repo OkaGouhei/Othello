@@ -35,36 +35,146 @@ public class Othello {
     System.out.println();
 
     Scanner sc = new Scanner(System.in);
+    int gameEnd = 0;
     for(int turn = 0; ; turn++){
       int player = turn%2+1;
 
-      //置く場所があるか判定する
+      if (gameEnd == 2){
+        System.out.println("どちらも置けないのでgame終了です");
+        break;
+      }
       int judge = 0;
       for (int i = 0;  i < size; i++) {
         for (int j = 0;  j < size; j++){
+
           if(cell[i][j] == 0){
-            //右横を判定させる
-            for ( int k = ++i ; k < size ;k++) {
+            System.out.println(i+":"+j+"は空白です");
+            //右側を判定
+            for ( int k = i + 1 ; k < size ;k++) {
               if(cell[k][j] == 0) {
                 break;
               }
               if(cell[k][j] == player) {
-                for(; k > i; k--) {
-                  if(cell[k][j] != player){
-                    judge++;
-                    break;
-                  }
+                if(k==i+1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
                 }
               }
-              if(judge==0){
-                System.out.println(cell[k][j]+"右横にはおけません");
+            }
+            //左側を判定
+            for ( int k = i - 1 ; k >= 0 ;k--) {
+              if(cell[k][j] == 0) {
+                break;
+              }
+              if(cell[k][j] == player) {
+                if(k==i-1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+              }
+              }
+            }
+
+            //下を判定
+            for ( int k = j + 1 ; k < size ;k++ ) {
+              if(cell[i][k] == 0) {
+                break;
+              }
+              if(cell[i][k] == player) {
+                if(k==j+1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
+              }
+            }
+
+            //上を判定
+            for ( int k = j - 1 ; k >= 0 ;k--) {
+              if(cell[i][k] == 0) {
+                break;
+              }
+              if(cell[i][k] == player) {
+                if(k==j-1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
+              }
+            }
+
+            //右斜め上を判定
+            for ( int k = i + 1, l =j-1 ; k < size &&l >=0 ; k++ , l--) {
+              if(cell[k][l] == 0) {
+                break;
+              }
+              if(cell[k][l] == player) {
+                if(k==i+1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
+              }
+            }
+            //左斜め上を判定
+            for ( int k = i - 1, l =j-1 ; k >=0 &&l >=0 ; k-- , l--) {
+              if(cell[k][l] == 0) {
+                break;
+              }
+              if(cell[k][l] == player) {
+                if(k==i-1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
+              }
+            }
+            //右斜め下を判定
+            for ( int k = i + 1, l =j+1 ; k < size &&l <size ; k++ , l++) {
+              if(cell[k][l] == 0) {
+                break;
+              }
+              if(cell[k][l] == player) {
+                if(k==i+1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
+              }
+            }
+            //左斜め下を判定
+            for ( int k = i - 1, l =j+1 ; k >=0 &&l <size ; k-- , l++) {
+              if(cell[k][l] == 0) {
+                break;
+              }
+              if(cell[k][l] == player) {
+                if(k==i-1) {
+                  break;
+                }else{
+                  System.out.println(+i+":"+j+"は置くことができます");
+                  judge++;
+                }
               }
             }
           }
         }
       }
-
-
+      if (judge == 0){
+        System.out.println("Player "+mark[player]+"はどこにも置くことができません");
+        gameEnd++;
+        continue;
+      }
+      if (judge > 0 ){
+        gameEnd = 0; // 連続してjudgeが0の場合に終了できるようにするためのからくり
+      }
 
       System.out.println("Player "+mark[player]+" の番です");
       int putX= 0,putY= 0;
