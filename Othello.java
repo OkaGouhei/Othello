@@ -38,7 +38,6 @@ public class Othello {
     int gameEnd = 0;
     for(int turn = 0; ; turn++){
       int player = turn%2+1;
-
       if (gameEnd == 2){
         System.out.println("どちらも置けないのでgame終了です");
         break;
@@ -77,7 +76,6 @@ public class Othello {
               }
               }
             }
-
             //下を判定
             for ( int k = j + 1 ; k < size ;k++ ) {
               if(cell[i][k] == 0) {
@@ -92,7 +90,6 @@ public class Othello {
                 }
               }
             }
-
             //上を判定
             for ( int k = j - 1 ; k >= 0 ;k--) {
               if(cell[i][k] == 0) {
@@ -107,7 +104,6 @@ public class Othello {
                 }
               }
             }
-
             //右斜め上を判定
             for ( int k = i + 1, l =j-1 ; k < size &&l >=0 ; k++ , l--) {
               if(cell[k][l] == 0) {
