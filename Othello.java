@@ -37,6 +37,35 @@ public class Othello {
     Scanner sc = new Scanner(System.in);
     for(int turn = 0; ; turn++){
       int player = turn%2+1;
+
+      //置く場所があるか判定する
+      int judge = 0;
+      for (int i = 0;  i < size; i++) {
+        for (int j = 0;  j < size; j++){
+          if(cell[i][j] == 0){
+            //右横を判定させる
+            for ( int k = ++i ; k < size ;k++) {
+              if(cell[k][j] == 0) {
+                break;
+              }
+              if(cell[k][j] == player) {
+                for(; k > i; k--) {
+                  if(cell[k][j] != player){
+                    judge++;
+                    break;
+                  }
+                }
+              }
+              if(judge==0){
+                System.out.println(cell[k][j]+"右横にはおけません");
+              }
+            }
+          }
+        }
+      }
+
+
+
       System.out.println("Player "+mark[player]+" の番です");
       int putX= 0,putY= 0;
       boolean othello = false;
