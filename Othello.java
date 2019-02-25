@@ -51,13 +51,11 @@ public class Othello {
        }
      }
      if (judge == 0){
-       System.out.println("Player "+mark[player]+"はどこにも置くことができ
-ません");
+       System.out.println("Player "+mark[player]+"はどこにも置くことができません");
        gameEnd++;
        continue;
      }else if (judge > 0 ){
-       gameEnd = 0; // 連続してjudgeが0以上の場合に終了できるようにするため
-のからくり
+       gameEnd = 0; // 連続してjudgeが0以上の場合に終了できるようにするためのからくり
      }
 
      System.out.println("〇  のコイン数は"+ pointCount(cell,size, 1));
@@ -84,8 +82,7 @@ othello);
                cell = count(i, j,cell, size, player, putX, putY) ;
         }
        }
-     }while(othello == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||
-cell[putX][putY]!=0);
+     }while(othello == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
 
      cell[putX][putY] = player;
      hyouji( cell, mark, size);
@@ -108,8 +105,7 @@ cell[putX][putY]!=0);
 
  private static int judge(int yoko ,int tate,int[][] cell,int size,int
 player,int i,int j, int judge) {
-    for ( int number = 0, k = i + yoko ,l = j + tate;k >= 0&& k < size
-&& l >= 0 && l < size  ;number++,k = k + yoko ,l= l + tate) {
+    for ( int number = 0, k = i + yoko ,l = j + tate;k >= 0&& k < size&& l >= 0 && l < size  ;number++,k = k + yoko ,l= l + tate) {
         if(cell[k][l] == 0) {
           break;
         }
@@ -127,9 +123,7 @@ player,int i,int j, int judge) {
 
  private static int[][] count(int yoko ,int tate,int[][] cell,int size,int
 player,int putX,int putY) {
-    for (int x = putX+yoko , y = putY + tate;
-        x >= 0 && x < size && y >= 0 && y < size  ;x = x +
-yoko,y = y + tate) {
+    for (int x = putX+yoko , y = putY + tate;x >= 0 && x < size && y >= 0 && y < size  ;x = x +yoko,y = y + tate) {
       if(cell[x][y] == 0) {
         break;
       }
