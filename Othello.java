@@ -57,21 +57,21 @@ public class Othello {
     System.out.println("Player "+mark[player]+" の番です");
     int putX= 0,putY= 0;
     int judge_2 = 0;
-	  if(player == 1) {
-	    do{
-  			System.out.println("X座標を入力してください");
-  			putX = sc.nextInt();
-  			System.out.println("Y座標を入力してください");
-  			putY = sc.nextInt();
-  			System.out.println();
-  			judge_2 = count( cell, size , player, putX, putY,true);
-		  }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
+    if(player == 1) {
+      do{
+        System.out.println("X座標を入力してください");
+        putX = sc.nextInt();
+        System.out.println("Y座標を入力してください");
+        putY = sc.nextInt();
+        System.out.println();
+        judge_2 = count( cell, size , player, putX, putY,true);
+      }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
     }else {
-		Random r = new Random();
-		do{
-			putX = r.nextInt(4);
-			putY = r.nextInt(4);
-			judge_2 = count( cell, size , player, putX, putY,true);
+    Random r = new Random();
+    do{
+      putX = r.nextInt(4);
+      putY = r.nextInt(4);
+      judge_2 = count( cell, size , player, putX, putY,true);
     }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
     System.out.println("X座標は"+ putX + "です");
     System.out.println("Y座標は"+ putY + "です");
@@ -100,31 +100,31 @@ public class Othello {
 }
 
 private static int count(int[][] cell,int size,int player,int putX,int putY,boolean hantei) {
-	int judge = 0;
+  int judge = 0;
     for (int i = -1 ; i<2 ; i++) {
-    	for (int j = -1 ; j<2 ; j++) {
-    		if(i==0 && j == 0) {
-    			continue;
-    		}
-		    for (int number = 0, k = putX+i , l = putY+j ;k >= 0 && k < size && l >= 0 && l < size  ;number++,k = k +i,l = l +j) {
-		      if(cell[k][l] == 0)  {  // その方向が空白だった場合
-		        break;
-		      }
-		      if(cell[k][l] == player) {
-		    	  if(hantei== true){
-              if(number == 0){  // その方向の1コイン目がplayer自身のコインだった場合
-				        break;
-				      }else{
-//				            System.out.println(+ putX+":"+putY+"は置くことができます");
-				        judge++;
-				      }
-		    	  }else {
-              for(; k != putX || l != putY  ; k = k- i ,l = l - j) {
-						    cell[k][l] = player;
-              }
-		    	  }
+      for (int j = -1 ; j<2 ; j++) {
+        if(i==0 && j == 0) {
+          continue;
+        }
+        for (int number = 0, k = putX+i , l = putY+j ;k >= 0 && k < size && l >= 0 && l < size  ;number++,k = k +i,l = l +j) {
+          if(cell[k][l] == 0)  {  // その方向が空白だった場合
             break;
-		      }
+          }
+          if(cell[k][l] == player) {
+            if(hantei== true){
+              if(number == 0){  // その方向の1コイン目がplayer自身のコインだった場合
+                break;
+              }else{
+//            System.out.println(+ putX+":"+putY+"は置くことができます");
+                judge++;
+              }
+            }else {
+              for(; k != putX || l != putY  ; k = k- i ,l = l - j) {
+                cell[k][l] = player;
+              }
+            }
+            break;
+          }
         }
       }
     }
