@@ -67,14 +67,14 @@ public class Othello {
         judge_2 = count( cell, size , player, putX, putY,true);
       }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
     }else {
-    Random r = new Random();
-    do{
-      putX = r.nextInt(4);
-      putY = r.nextInt(4);
-      judge_2 = count( cell, size , player, putX, putY,true);
-    }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
-    System.out.println("X座標は"+ putX + "です");
-    System.out.println("Y座標は"+ putY + "です");
+      Random r = new Random();
+      do{
+        putX = r.nextInt(size);
+        putY = r.nextInt(size);
+        judge_2 = count( cell, size , player, putX, putY,true);
+      }while(judge_2 == 0  || putX<0 || putY<0 || putX>=size ||putY>=size ||cell[putX][putY]!=0);
+      System.out.println("X座標は"+ putX + "です");
+      System.out.println("Y座標は"+ putY + "です");
     }
 
     count(cell, size, player, putX, putY, false) ;
@@ -111,7 +111,7 @@ private static int count(int[][] cell,int size,int player,int putX,int putY,bool
             break;
           }
           if(cell[k][l] == player) {
-            if(hantei== true){
+            if(hantei){
               if(number == 0){  // その方向の1コイン目がplayer自身のコインだった場合
                 break;
               }else{
